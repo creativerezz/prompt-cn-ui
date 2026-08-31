@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Geist_Mono, Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
@@ -24,6 +24,16 @@ export const metadata: Metadata = {
   ),
 }
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#171719" },
+  ],
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,7 +42,7 @@ export default function RootLayout({
   const isDev = process.env.NODE_ENV === "development"
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="bg-background" suppressHydrationWarning>
       {!isDev ? (
         <Script defer src="https://assets.onedollarstats.com/stonks.js" />
       ) : null}
