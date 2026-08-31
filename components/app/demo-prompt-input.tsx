@@ -38,8 +38,8 @@ export function DemoPromptInput() {
   const [activeTab, setActiveTab] = useState(TABS[0])
 
   return (
-    <div className="mx-auto flex w-full flex-col gap-10">
-      <div className="border-border flex min-h-[350px] w-full items-end rounded border p-4 sm:p-8">
+    <div className="mx-auto flex min-w-0 w-full flex-col gap-6 sm:gap-10">
+      <div className="border-border flex min-h-[260px] w-full min-w-0 items-end overflow-hidden rounded border p-3 min-[400px]:p-4 sm:min-h-[350px] sm:p-8">
         <AnimatePresence initial={false} mode="wait">
           <m.div
             key={activeTab.label}
@@ -65,7 +65,7 @@ export function DemoPromptInput() {
           </m.div>
         </AnimatePresence>
       </div>
-      <div className="flex flex-row justify-center gap-8">
+      <div className="flex min-w-0 justify-center overflow-x-auto pb-1">
         <AnimatedBackground
           defaultValue={activeTab.label}
           className={cn(
@@ -85,7 +85,7 @@ export function DemoPromptInput() {
               key={tab.label}
               data-id={tab.label}
               className={cn(
-                "text-muted-foreground hover:text-foreground rounded-md px-2 py-1 text-sm transition-all active:scale-[0.98]",
+                "text-muted-foreground hover:text-foreground min-h-11 shrink-0 rounded-md px-2.5 py-2 text-sm transition-all active:scale-[0.98]",
                 "group",
                 activeTab.label === tab.label && "text-foreground"
               )}
@@ -97,7 +97,7 @@ export function DemoPromptInput() {
                   alt={`${tab.label} logo`}
                   width={16}
                   height={16}
-                  className="h-auto w-4"
+                  className="size-4"
                 />
                 {tab.label}
               </span>

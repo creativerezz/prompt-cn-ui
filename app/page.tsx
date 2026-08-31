@@ -31,29 +31,29 @@ function PromptInputBasic() {
 export default function Home() {
   return (
     <>
-      <section className="mb-16 flex flex-col items-start sm:mb-20">
+      <section className="mb-12 flex flex-col items-start sm:mb-20">
         <TextShimmer
           as="span"
           duration={2.5}
           spread={30}
-          className="mb-4 text-xs font-medium tracking-[0.2em] uppercase sm:text-sm"
+          className="mb-3 max-w-full text-xs font-medium tracking-[0.14em] uppercase sm:mb-4 sm:text-sm sm:tracking-[0.2em]"
         >
           Core building blocks for AI apps
         </TextShimmer>
-        <h1 className="mb-5 flex flex-col gap-1 text-pretty">
+        <h1 className="mb-5 flex max-w-4xl flex-col gap-2 text-pretty sm:gap-1">
           <TextShimmer
             as="span"
             duration={3}
             spread={40}
-            className="text-3xl font-[450] tracking-tight sm:text-4xl md:text-5xl"
+            className="text-[clamp(2rem,9vw,3rem)] leading-[1.08] font-[450] tracking-[-0.035em] sm:text-4xl md:text-5xl"
           >
             High-quality components
           </TextShimmer>
-          <span className="text-muted-foreground text-2xl font-[450] tracking-tight text-balance sm:text-3xl md:text-4xl">
+          <span className="text-muted-foreground text-[clamp(1.5rem,7vw,2.25rem)] leading-[1.15] font-[450] tracking-[-0.03em] text-balance sm:text-3xl md:text-4xl">
             Accessible and customizable UI for AI interfaces.
           </span>
         </h1>
-        <div className="mt-2 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:gap-4">
+        <div className="mt-1 flex w-full flex-col gap-3 sm:mt-2 sm:w-auto sm:flex-row sm:gap-4">
           <Link
             href="/docs/introduction"
             className="bg-foreground text-background hover:bg-foreground/90 inline-flex h-11 min-h-11 w-full items-center justify-center gap-2 rounded-full px-5 text-base font-medium transition-colors sm:w-auto"
@@ -72,10 +72,10 @@ export default function Home() {
           </Link>
         </div>
       </section>
-      <div className="-mx-5 mb-24 sm:mx-0 sm:mb-40">
+      <div className="mb-20 min-w-0 sm:mb-40">
         <DemoPromptInput />
       </div>
-      <CodeBlock className="relative mb-16 rounded-md border-transparent sm:mb-20">
+      <CodeBlock className="relative mb-16 min-w-0 overflow-hidden rounded-md border-transparent sm:mb-20">
         <CodeBlockGroup className="absolute top-3 right-3 sm:top-4 sm:right-4">
           <CopyCodeButton code={CODE_SAMPLE} />
         </CodeBlockGroup>

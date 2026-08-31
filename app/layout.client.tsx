@@ -37,7 +37,7 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
         <Header triggerViewportWidth={MOBILE_SIDEBAR_VIEWPORT_THRESHOLD} />
         <div
           className={cn(
-            "mx-auto flex min-h-svh w-full flex-col px-5 pt-24 sm:px-8 md:px-10 md:pt-16 lg:px-12 lg:pt-20",
+            "mx-auto flex min-h-svh w-full flex-col px-4 pt-[calc(env(safe-area-inset-top)+5.5rem)] sm:px-8 md:px-10 md:pt-16 lg:px-12 lg:pt-20",
             isBlocksPage || isPrimitivesPage || isLanding || isHomePage
               ? "max-w-7xl"
               : "max-w-4xl"

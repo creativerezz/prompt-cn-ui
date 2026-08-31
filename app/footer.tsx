@@ -8,14 +8,14 @@ export function Footer() {
   const navigation = getNavigation(pathname)
 
   return (
-    <div className="flex justify-between pt-12 pb-20">
+    <div className="flex min-w-0 items-start justify-between gap-2 pt-10 pb-[calc(env(safe-area-inset-bottom)+3rem)] sm:pt-12 sm:pb-20">
       {navigation && navigation.prev ? (
         <Link
           href={navigation.prev.path}
-          className="hover:bg-primary-foreground inline-flex items-center gap-1 rounded-md border px-2 py-1 text-sm text-zinc-500 transition-colors duration-200"
+          className="text-muted-foreground hover:bg-muted inline-flex min-h-11 min-w-0 max-w-[48%] items-center gap-1 rounded-md border px-2.5 py-2 text-sm transition-colors duration-200"
         >
-          <ChevronLeft className="h-4 w-4" />
-          {navigation.prev.label}
+          <ChevronLeft className="size-4 shrink-0" />
+          <span className="truncate">{navigation.prev.label}</span>
         </Link>
       ) : (
         <div className="w-full" />
@@ -24,9 +24,10 @@ export function Footer() {
       {navigation && navigation.next && (
         <Link
           href={navigation.next.path}
-          className="hover:bg-primary-foreground inline-flex items-center gap-1 rounded-md border px-2 py-1 text-sm text-zinc-500 transition-colors duration-200"
+          className="text-muted-foreground hover:bg-muted inline-flex min-h-11 min-w-0 max-w-[48%] items-center gap-1 rounded-md border px-2.5 py-2 text-sm transition-colors duration-200"
         >
-          {navigation.next.label} <ChevronRight className="h-4 w-4" />
+          <span className="truncate">{navigation.next.label}</span>
+          <ChevronRight className="size-4 shrink-0" />
         </Link>
       )}
     </div>

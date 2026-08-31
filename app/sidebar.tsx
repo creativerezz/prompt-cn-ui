@@ -44,7 +44,7 @@ import {
 import { useTheme } from "next-themes"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import {
   Sidebar,
   SidebarContent,
@@ -218,7 +218,13 @@ function NavSection({
 
 function ThemeCycleButton() {
   const { theme, setTheme } = useTheme()
-  const current = theme ?? "light"
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const current = mounted ? (theme ?? "light") : "light"
   const next =
     current === "dark" ? "light" : current === "light" ? "system" : "dark"
   const label =
