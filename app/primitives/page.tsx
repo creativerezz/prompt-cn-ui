@@ -1,5 +1,6 @@
 import { InputByok } from "@/app/primitives/demo/input-byok"
 import { ContributeCta } from "@/components/app/contribute-cta"
+import { shadcnAdd } from "@/lib/site"
 import { DocCodeBlock } from "@/components/app/doc-code-block"
 import FullStackPreview from "@/components/app/fullstack-preview"
 import { LayoutProse } from "@/components/app/layout-prose"
@@ -52,7 +53,7 @@ export default function PrimitivesPage() {
           />
           <DocCodeBlock
             language="bash"
-            code={`npx shadcn@latest add "https://prompt-kit.com/c/chatbot.json"`}
+            code={shadcnAdd("chatbot")}
           />
         </div>
         <div>
@@ -65,7 +66,7 @@ export default function PrimitivesPage() {
           />
           <DocCodeBlock
             language="bash"
-            code={`npx shadcn@latest add "https://prompt-kit.com/c/tool-calling.json"`}
+            code={shadcnAdd("tool-calling")}
           />
         </div>
       </LayoutProse>

@@ -1,4 +1,5 @@
 import { generateMetadata as generateSiteMetadata } from "@/app/docs/utils/metadata"
+import { getRegistryOrigin, kit } from "@/lib/site"
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
 import {
@@ -28,12 +29,12 @@ export async function generateMetadata({
   const { slug } = await params
   const meta = metadataBySlug[slug as keyof typeof metadataBySlug]
 
-  const title = meta?.title ?? "prompt-kit components for AI apps"
+  const title = meta?.title ?? `${kit.name} components for AI apps`
   const description =
     meta?.description ??
     "Composable UI and fullstack primitives for AI apps. Build chat UIs, tool calling, streaming responses, and more with React, Tailwind CSS, and shadcn/ui."
 
-  const base = process.env.NEXT_PUBLIC_SITE_URL || "https://prompt-kit.com"
+  const base = getRegistryOrigin()
   const canonical = `${base}/${slug}`
   const keywords = meta?.keywords ?? [
     "AI UI components",
@@ -42,7 +43,7 @@ export async function generateMetadata({
     "React",
     "Tailwind CSS",
     "shadcn/ui",
-    "prompt-kit",
+    kit.name,
   ]
 
   const ogImage = `${base}/opengraph-image.jpg`

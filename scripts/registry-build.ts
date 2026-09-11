@@ -1,5 +1,6 @@
 import fs from "fs"
 import path from "path"
+import { getRegistryOrigin, kit } from "../lib/site"
 import { components } from "./registry-components"
 import { primitives } from "./registry-primitives"
 import { PrimitiveDefinition, RegistryFile, Schema } from "./registry-schema"
@@ -149,7 +150,7 @@ const componentItems = components.map((component) => {
     tailwind: component.tailwind,
     cssVars: component.cssVars,
     files: componentFiles,
-    categories: ["ai", "prompt-kit"],
+    categories: ["ai", kit.name],
   }
 })
 
@@ -191,7 +192,7 @@ const primitiveItems = primitives.map((primitive) => {
       (primitive as PrimitiveDefinition).registryDependencies || [],
     files: primitiveFiles,
     envVars: primitive.envVars || {},
-    categories: ["ai", "prompt-kit"],
+    categories: ["ai", kit.name],
   }
 })
 
@@ -199,8 +200,8 @@ const registryItems = [...componentItems, ...primitiveItems]
 
 const registry = {
   $schema: "https://ui.shadcn.com/schema/registry.json",
-  name: "prompt-kit",
-  homepage: "https://prompt-kit.com",
+  name: kit.name,
+  homepage: getRegistryOrigin(),
   items: registryItems,
 }
 

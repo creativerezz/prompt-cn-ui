@@ -1,29 +1,29 @@
-# prompt-kit
+# prompt-cn-ui
 
-**Customizable, high-quality components for AI applications.**  
-Build chat experiences, AI agents, autonomous assistants, and more, quickly and beautifully.
+Customizable AI UI components. Fork of [prompt-kit](https://www.prompt-kit.com/), published as your own shadcn registry.
 
-![cover](/app/opengraph-image.jpg)
-
-## Installation
-
-### Install shadcn/ui
-
-First, you'll need to install and configure [shadcn/ui](https://ui.shadcn.com) in your project.  
-Follow the installation guide in the shadcn/ui documentation.
-
-### Install prompt-kit components
-
-Once shadcn/ui is set up, you can install `prompt-kit` components using the shadcn CLI:
+## Run the docs
 
 ```sh
-npx shadcn@latest add prompt-kit/[component]
+npm install
+npm run dev
 ```
 
-### Usage
+Open [http://localhost:3000](http://localhost:3000).
 
-After installation, import and start using the components in your project:
+## Install a component into another app
 
-```tsx
-import { PromptInput } from "@/components/ui/prompt-input"
+```sh
+npx shadcn@latest add "http://localhost:3000/c/model-select.json"
 ```
+
+After you deploy, set `NEXT_PUBLIC_SITE_URL` to that origin and use that URL instead of localhost.
+
+## Add a component to this kit
+
+See `/docs/create`. Short path:
+
+1. Add `components/prompt-kit/your-name.tsx`
+2. Register it in `scripts/registry-components.ts`
+3. Add `app/docs/your-name/page.mdx` and a route in `app/routes.ts`
+4. Run `npm run build:registry`

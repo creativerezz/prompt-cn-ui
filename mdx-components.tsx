@@ -1,4 +1,5 @@
 import { DocCodeBlock } from "@/components/app/doc-code-block"
+import { InstallCli } from "@/components/app/install-cli"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { cn } from "@/lib/utils"
 import type { MDXComponents } from "mdx/types"
@@ -23,6 +24,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {children}
       </Link>
     ),
+    InstallCli,
     CodeBlock: ({
       language,
       code,

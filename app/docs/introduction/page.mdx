@@ -1,14 +1,15 @@
+import { kit } from "@/lib/site"
 import { generateMetadata } from "../utils/metadata"
 
 export const metadata = generateMetadata(
   "Introduction",
-  "Introduction to prompt-kit."
+  `Introduction to ${kit.name}.`
 )
 
-**prompt-kit** is a set of customizable, high-quality components built for AI applications, making it easy to design chat experiences, AI agents, autonomous assistants, and more, quickly and beautifully.
+**{kit.name}** is a set of customizable, high-quality components for AI applications: chat, agents, and assistants.
 
-**prompt-kit** is built on top of shadcn/ui with the same design principles. But instead of helping you build a component library, it helps you build AI interfaces.
+It is a fork of [prompt-kit](https://www.prompt-kit.com/). Same shadcn/ui install model. This copy is yours: change the components, host the registry, add new ones.
 
-This project is a work in progress, and we're continuously improving and expanding the collection. We'd love to hear your feedback or see your contributions as it evolves!
+Source: [{kit.githubRepo}]({kit.github}).
 
-prompt-kit is open source. Check out the code and contribute on [GitHub](https://github.com/ibelick/prompt-kit).
+Next: [install a component](/docs/installation) or [add one to the kit](/docs/create).

@@ -1,0 +1,74 @@
+import ComponentCodePreview from "@/components/app/component-code-preview"
+import { generateMetadata } from "../utils/metadata"
+import { ModelSelectBasic } from "./model-select-basic"
+
+export const metadata = generateMetadata(
+  "Model Select",
+  "A dropdown for choosing an AI model and provider."
+)
+
+# Model Select
+
+A dropdown for choosing an AI model and provider in a chat header or prompt bar.
+
+## Examples
+
+### Basic
+
+<ComponentCodePreview
+  component={<ModelSelectBasic />}
+  filePath="app/docs/model-select/model-select-basic.tsx"
+  classNameComponentContainer="p-8"
+/>
+
+## Installation
+
+<Tabs defaultValue="cli">
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+<InstallCli name="model-select" />
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<Steps>
+
+<Step>Copy and paste the following code into your project.</Step>
+
+<CodeBlock filePath="components/prompt-kit/model-select.tsx" language="tsx" />
+
+<Step>Update the import paths to match your project setup.</Step>
+
+</Steps>
+
+</TabsContent>
+
+</Tabs>
+
+## Component API
+
+### ModelSelect
+
+| Prop          | Type                      | Default          | Description                          |
+| :------------ | :------------------------ | :--------------- | :----------------------------------- |
+| models        | ModelOption[]             |                  | List of models to show               |
+| value         | string                    |                  | Selected model id                    |
+| onValueChange | (id: string) => void      |                  | Called when the user picks a model   |
+| placeholder   | string                    | "Select model"   | Label when nothing is selected       |
+| disabled      | boolean                   | false            | Disables the trigger                 |
+| className     | string                    |                  | Extra classes on the trigger button  |
+
+### ModelOption
+
+| Property | Type   | Description        |
+| :------- | :----- | :----------------- |
+| id       | string | Stable model id    |
+| label    | string | Display name       |
+| provider | string | Optional subtitle  |

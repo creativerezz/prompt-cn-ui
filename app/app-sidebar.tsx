@@ -223,7 +223,7 @@ const Sidebar = React.forwardRef<
           >
             <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
             <SheetDescription className="sr-only">
-              Browse prompt-kit documentation and components.
+              Browse prompt-cn-ui documentation and components.
             </SheetDescription>
             <div className="flex h-full w-full flex-col">{children}</div>
           </SheetContent>

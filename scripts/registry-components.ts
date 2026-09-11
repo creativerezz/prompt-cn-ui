@@ -342,4 +342,12 @@ export const components: ComponentDefinition[] = [
     path: path.join(__dirname, "../components/prompt-kit/feedback-bar.tsx"),
     dependencies: ["lucide-react"],
   },
+  {
+    name: "model-select",
+    description:
+      "A dropdown for choosing an AI model and provider in chat interfaces",
+    path: path.join(__dirname, "../components/prompt-kit/model-select.tsx"),
+    registryDependencies: ["button", "dropdown-menu"],
+    dependencies: ["lucide-react"],
+  },
 ]

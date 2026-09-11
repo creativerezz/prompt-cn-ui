@@ -1,11 +1,10 @@
 import fs from "fs"
 import path from "path"
 import type { MetadataRoute } from "next"
+import { getRegistryOrigin } from "@/lib/site"
 import { slugs } from "./[slug]/data"
 
-const BASE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://prompt-kit.com"
-).replace(/\/+$/, "")
+const BASE_URL = getRegistryOrigin()
 
 const staticRoutes = ["", "docs", "docs/showcase", "blocks", "primitives"]
 

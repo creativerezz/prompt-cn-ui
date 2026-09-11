@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import { Geist_Mono, Inter } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
+import { getRegistryOrigin, kit } from "@/lib/site"
 import Script from "next/script"
 import { LayoutClient } from "./layout.client"
 
@@ -16,12 +17,10 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "prompt-kit",
+  title: kit.name,
   description:
     "Core building blocks for AI apps. High-quality, accessible, and customizable components for AI interfaces. Built with React, shadcn/ui and Tailwind CSS.",
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://prompt-kit.com"
-  ),
+  metadataBase: new URL(getRegistryOrigin()),
 }
 
 export default function RootLayout({

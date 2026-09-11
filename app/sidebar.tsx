@@ -1,6 +1,7 @@
 "use client"
 
 import { PromptKitLogo } from "@/components/app/icon/prompt-kit-logo"
+import { kit } from "@/lib/site"
 import { cn } from "@/lib/utils"
 import type { LucideIcon } from "lucide-react"
 import {
@@ -44,7 +45,7 @@ import {
 import { useTheme } from "next-themes"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import {
   Sidebar,
   SidebarContent,
@@ -75,6 +76,7 @@ const coreIcons: Record<string, LucideIcon> = {
   "/docs/introduction": BookOpen,
   "/docs/installation": Download,
   "/docs/mcp": Network,
+  "/docs/create": PackageOpen,
 }
 
 const componentIcons: Record<string, LucideIcon> = {
@@ -86,6 +88,7 @@ const componentIcons: Record<string, LucideIcon> = {
   "/docs/image": ImageIcon,
   "/docs/loader": LoaderCircle,
   "/docs/markdown": Text,
+  "/docs/model-select": Bot,
   "/docs/message": MessageCircle,
   "/docs/prompt-input": TextCursorInput,
   "/docs/prompt-suggestion": Sparkles,
@@ -137,7 +140,7 @@ const resourceMenuItems: NavItem[] = [
 const communityMenuItems: NavItem[] = [
   {
     title: "GitHub",
-    url: "https://github.com/ibelick/prompt-kit",
+    url: kit.github,
     icon: Github,
     external: true,
   },
@@ -218,6 +221,12 @@ function NavSection({
 
 function ThemeCycleButton() {
   const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   const current = theme ?? "light"
   const next =
     current === "dark" ? "light" : current === "light" ? "system" : "dark"
@@ -226,6 +235,24 @@ function ThemeCycleButton() {
       ? "System theme"
       : `${current[0].toUpperCase()}${current.slice(1)} theme`
   const Icon = current === "dark" ? Moon : current === "light" ? Sun : Monitor
+
+  if (!mounted) {
+    return (
+      <SidebarMenuButton
+        type="button"
+        disabled
+        tooltip="Theme"
+        aria-label="Theme"
+        className="text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-9 rounded-lg"
+      >
+        <Monitor className="size-4" />
+        <span>Theme</span>
+        <span className="text-sidebar-foreground/35 ml-auto font-mono text-xs group-data-[collapsible=icon]:hidden">
+          Cycle
+        </span>
+      </SidebarMenuButton>
+    )
+  }
 
   return (
     <SidebarMenuButton
@@ -269,7 +296,7 @@ export function AppSidebar() {
                 <PromptKitLogo className="size-4.5" />
               </span>
               <span className="truncate text-sm font-semibold tracking-[-0.02em] group-data-[collapsible=icon]:hidden">
-                prompt-kit
+                {kit.name}
               </span>
             </Link>
             <SidebarTrigger className="border-sidebar-border bg-sidebar-accent/40 text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground size-8 shrink-0 rounded-lg border" />

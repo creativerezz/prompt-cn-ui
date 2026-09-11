@@ -1,5 +1,6 @@
 import { DemoPromptInput } from "@/components/app/demo-prompt-input"
 import { DocCodeBlock } from "@/components/app/doc-code-block"
+import { shadcnAddTemplate } from "@/lib/site"
 import {
   Accordion,
   AccordionContent,
@@ -185,7 +186,7 @@ export default function Landing({ content }: { content: LandingContent }) {
         </div>
         <DocCodeBlock
           language="bash"
-          code={`npx shadcn@latest add "https://prompt-kit.com/c/[COMPONENT].json"`}
+          code={shadcnAddTemplate()}
         />
       </div>
 

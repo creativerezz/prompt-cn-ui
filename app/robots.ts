@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next"
+import { getRegistryOrigin } from "@/lib/site"
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -25,6 +26,6 @@ export default function robots(): MetadataRoute.Robots {
         allow: "/",
       },
     ],
-    sitemap: "https://www.prompt-kit.com/sitemap.xml",
+    sitemap: `${getRegistryOrigin()}/sitemap.xml`,
   }
 }

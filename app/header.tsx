@@ -1,6 +1,7 @@
 import { SidebarTrigger } from "@/app/app-sidebar"
 import { PromptKitLogo } from "@/components/app/icon/prompt-kit-logo"
 import { useBreakpoint } from "@/hooks/use-breakpoint"
+import { kit } from "@/lib/site"
 import Link from "next/link"
 
 export type HeaderProps = {
@@ -22,7 +23,7 @@ export function Header({ triggerViewportWidth }: HeaderProps) {
             <PromptKitLogo className="size-4" />
           </span>
           <span className="text-sm font-semibold tracking-[-0.02em] lowercase">
-            prompt-kit
+            {kit.name}
           </span>
         </Link>
         <SidebarTrigger className="border-border bg-secondary/60 text-muted-foreground hover:bg-accent hover:text-foreground size-8 rounded-lg border" />

@@ -35,9 +35,10 @@ We accept contributions in the following areas:
 ### Setting Up the Project
 
 1. Fork the repository on GitHub.
-2. Clone your fork: `git clone https://github.com/ibelick/prompt-kit.git`
-3. Install dependencies: `pnpm install`
-4. Run the development server: `pnpm dev`
+2. Clone your fork: `git clone https://github.com/creativerezz/prompt-cn-ui.git`
+3. Install dependencies: `npm install`
+4. Run the development server: `npm run dev`
+5. Adding a new component: follow `/docs/create`
 5. For primitives, set up an OpenAI API key in localStorage for testing (see `/components/primitives/demo`).
 
 ### Folder Structure

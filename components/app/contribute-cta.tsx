@@ -1,3 +1,4 @@
+import { kit } from "@/lib/site"
 import React from "react"
 import { Button } from "../ui/button"
 
@@ -7,12 +8,9 @@ type ContributeCtaProps = {
 
 export function ContributeCta({ type }: ContributeCtaProps) {
   const suggestHref = {
-    component:
-      "https://github.com/ibelick/prompt-kit/issues/new?title=%5BComponent+Request%5D+&labels=component&template=component_request.yml",
-    block:
-      "https://github.com/ibelick/prompt-kit/issues/new?title=%5BBlock+Request%5D+&labels=block&template=block_request.yml",
-    primitive:
-      "https://github.com/ibelick/prompt-kit/issues/new?title=%5BPrimitive+Request%5D+&labels=primitive&template=primitive_request.yml",
+    component: `${kit.github}/issues/new?title=%5BComponent+Request%5D`,
+    block: `${kit.github}/issues/new?title=%5BBlock+Request%5D`,
+    primitive: `${kit.github}/issues/new?title=%5BPrimitive+Request%5D`,
   }
 
   const suggestLabel = {
@@ -32,11 +30,11 @@ export function ContributeCta({ type }: ContributeCtaProps) {
         </Button>
         <Button asChild size="sm">
           <a
-            href="https://github.com/ibelick/prompt-kit/blob/main/CONTRIBUTING.md"
+            href={`${kit.github}/blob/main/CONTRIBUTING.md`}
             target="_blank"
             rel="noreferrer"
           >
-            Contribute to prompt-kit
+            Contribute to {kit.name}
           </a>
         </Button>
       </div>

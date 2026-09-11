@@ -31,6 +31,12 @@ export const routes: Route[] = [
     order: 3,
     type: "core",
   },
+  {
+    path: "/docs/create",
+    label: "Add a component",
+    order: 3.5,
+    type: "core",
+  },
   // Components
   {
     path: "/docs/chain-of-thought",
@@ -80,6 +86,13 @@ export const routes: Route[] = [
     label: "Markdown",
     order: 10,
     type: "component",
+  },
+  {
+    path: "/docs/model-select",
+    label: "Model Select",
+    order: 10.5,
+    type: "component",
+    isNew: true,
   },
   {
     path: "/docs/message",

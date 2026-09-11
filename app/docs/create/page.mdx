@@ -1,0 +1,57 @@
+import { kit } from "@/lib/site"
+import { generateMetadata } from "../utils/metadata"
+
+export const metadata = generateMetadata(
+  "Add a component",
+  "How to add a component to this kit and publish it on the registry."
+)
+
+# Add a component
+
+This repo is **{kit.name}**. Existing prompt-kit components stay. New ones you add become part of your registry.
+
+## Recipe
+
+<Steps>
+
+<Step>Create the component</Step>
+
+Put UI-only code in `components/prompt-kit/your-name.tsx`. Copy `model-select.tsx` if you want a short example.
+
+<Step>Register it</Step>
+
+Add an object to the `components` array in `scripts/registry-components.ts`. Use the same `name` as the file.
+
+<Step>Document it</Step>
+
+1. Add `app/docs/your-name/page.mdx` (copy `app/docs/model-select/page.mdx`)
+2. Add a demo file next to it
+3. Add a route in `app/routes.ts` with `type: "component"`
+
+<Step>Build the registry</Step>
+
+<CodeBlock language="bash" code={`npm run build:registry`} />
+
+This writes `public/c/your-name.json`. That file is what `npx shadcn add` installs.
+
+<Step>Check it locally</Step>
+
+<CodeBlock language="bash" code={`npm run dev`} />
+
+Open `/docs/your-name`. Install into another app with:
+
+<InstallCli name="your-name" />
+
+Set `NEXT_PUBLIC_SITE_URL` to your deployed origin before you share that command.
+
+</Steps>
+
+## What goes where
+
+| You are adding | Put files here |
+| :------------- | :------------- |
+| UI component | `components/prompt-kit/` + docs + registry entry |
+| Assembled UI, no API | `components/blocks/` |
+| UI + API route | `components/demo/` or `components/primitives/` plus `app/api/` |
+
+Do not put backend calls inside `components/prompt-kit/`. That folder is copy-paste UI.

@@ -1,0 +1,25 @@
+{
+  "name": "model-select",
+  "type": "registry:ui",
+  "registryDependencies": [
+    "button",
+    "dropdown-menu"
+  ],
+  "dependencies": [
+    "lucide-react"
+  ],
+  "devDependencies": [],
+  "tailwind": {},
+  "cssVars": {
+    "light": {},
+    "dark": {}
+  },
+  "description": "A dropdown for choosing an AI model and provider in chat interfaces",
+  "files": [
+    {
+      "path": "model-select.tsx",
+      "content": "\"use client\"\n\nimport { Button } from \"@/components/ui/button\"\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuItem,\n  DropdownMenuTrigger,\n} from \"@/components/ui/dropdown-menu\"\nimport { cn } from \"@/lib/utils\"\nimport { Check, ChevronsUpDown } from \"lucide-react\"\n\nexport type ModelOption = {\n  id: string\n  label: string\n  provider?: string\n}\n\nexport type ModelSelectProps = {\n  models: ModelOption[]\n  value?: string\n  onValueChange?: (id: string) => void\n  placeholder?: string\n  disabled?: boolean\n  className?: string\n}\n\nexport function ModelSelect({\n  models,\n  value,\n  onValueChange,\n  placeholder = \"Select model\",\n  disabled,\n  className,\n}: ModelSelectProps) {\n  const selected = models.find((model) => model.id === value)\n\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <Button\n          type=\"button\"\n          variant=\"outline\"\n          disabled={disabled}\n          className={cn(\"min-w-48 justify-between gap-2 font-normal\", className)}\n        >\n          <span className=\"flex min-w-0 items-baseline gap-2 truncate\">\n            {selected ? (\n              <>\n                <span className=\"truncate\">{selected.label}</span>\n                {selected.provider ? (\n                  <span className=\"text-muted-foreground truncate text-xs\">\n                    {selected.provider}\n                  </span>\n                ) : null}\n              </>\n            ) : (\n              <span className=\"text-muted-foreground\">{placeholder}</span>\n            )}\n          </span>\n          <ChevronsUpDown className=\"text-muted-foreground size-4 shrink-0\" />\n        </Button>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent\n        align=\"start\"\n        className=\"min-w-[var(--radix-dropdown-menu-trigger-width)]\"\n      >\n        {models.map((model) => {\n          const isSelected = model.id === value\n\n          return (\n            <DropdownMenuItem\n              key={model.id}\n              onSelect={() => onValueChange?.(model.id)}\n              className=\"justify-between gap-3\"\n            >\n              <span className=\"flex min-w-0 flex-col\">\n                <span>{model.label}</span>\n                {model.provider ? (\n                  <span className=\"text-muted-foreground text-xs\">\n                    {model.provider}\n                  </span>\n                ) : null}\n              </span>\n              {isSelected ? <Check className=\"size-4 shrink-0\" /> : null}\n            </DropdownMenuItem>\n          )\n        })}\n      </DropdownMenuContent>\n    </DropdownMenu>\n  )\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}

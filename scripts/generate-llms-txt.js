@@ -1,12 +1,18 @@
 import {
   readdir as _readdir,
   readFile as _readFile,
+  readFileSync,
   stat as _stat,
   writeFile as _writeFile,
   existsSync,
 } from "fs"
 import { basename, join } from "path"
 import { promisify } from "util"
+
+const kit = JSON.parse(readFileSync(join(process.cwd(), "lib/kit.json"), "utf8"))
+const registryOrigin = (
+  process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"
+).replace(/\/+$/, "")
 
 const readFile = promisify(_readFile)
 const writeFile = promisify(_writeFile)
@@ -180,11 +186,11 @@ async function generateTableOfContents() {
  * Generate main header section including title and description
  */
 function generateHeaderSection() {
-  return `# prompt-kit
+  return `# ${kit.name}
 
-> prompt-kit is a library of customizable, high-quality UI components for AI applications. It provides ready-to-use components for building chat experiences, AI agents, autonomous assistants, and more, with a focus on rapid development and beautiful design.
+> ${kit.name} is a library of customizable, high-quality UI components for AI applications. It provides ready-to-use components for building chat experiences, AI agents, autonomous assistants, and more, with a focus on rapid development and beautiful design.
 
-prompt-kit is built on top of shadcn/ui and extends it with specialized components for AI interfaces. It uses Next.js, React 19, and Tailwind CSS. The components are designed to be easily customizable and can be installed individually using the shadcn CLI.
+${kit.name} is built on top of shadcn/ui and extends it with specialized components for AI interfaces. It uses Next.js, React 19, and Tailwind CSS. The components are designed to be easily customizable and can be installed individually using the shadcn CLI.
 
 `
 }
@@ -293,7 +299,7 @@ Available primitives:
 
 **Installation**:
 \`\`\`bash
-npx shadcn add "https://prompt-kit.com/c/${primitive.name}.json"
+npx shadcn add "${registryOrigin}/c/${primitive.name}.json"
 \`\`\`
 
 **Features**:

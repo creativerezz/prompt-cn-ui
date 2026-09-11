@@ -14,7 +14,7 @@ const CODE_SAMPLE = `import {
 function PromptInputBasic() {
   return (
     <PromptInput>
-      <PromptInputTextarea placeholder='Ask prompt-kit' />
+      <PromptInputTextarea placeholder='Ask prompt-cn-ui' />
       <PromptInputActions>
         <PromptInputAction tooltip='Upload File'>
           <Button>Upload File</Button>
