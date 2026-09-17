@@ -32,18 +32,30 @@ export function LayoutClient({ children }: { children: React.ReactNode }) {
       viewportWidth={MOBILE_SIDEBAR_VIEWPORT_THRESHOLD}
       mdViewportWidth={MD_SIDEBAR_VIEWPORT_THRESHOLD}
     >
+      <a
+        href="#main-content"
+        className="bg-primary text-primary-foreground sr-only fixed top-2 left-2 z-[100] rounded-md px-4 py-2 text-sm focus:not-sr-only"
+      >
+        Skip to content
+      </a>
       <AppSidebar />
       <div className="relative min-w-0 flex-1">
         <Header triggerViewportWidth={MOBILE_SIDEBAR_VIEWPORT_THRESHOLD} />
         <div
           className={cn(
-            "mx-auto flex min-h-svh w-full flex-col px-5 pt-24 sm:px-8 md:px-10 md:pt-16 lg:px-12 lg:pt-20",
+            "mx-auto flex min-h-[calc(100svh-3.5rem)] w-full flex-col px-5 pt-10 sm:px-8 md:px-10 lg:px-12 lg:pt-12",
             isBlocksPage || isPrimitivesPage || isLanding || isHomePage
               ? "max-w-7xl"
               : "max-w-4xl"
           )}
         >
-          <main className="min-w-0 flex-1">{children}</main>
+          <main
+            id="main-content"
+            tabIndex={-1}
+            className="min-w-0 flex-1 scroll-mt-20 outline-none"
+          >
+            {children}
+          </main>
           <Footer />
         </div>
       </div>

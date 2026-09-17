@@ -1,4 +1,7 @@
+"use client"
+
 import { SidebarTrigger } from "@/app/app-sidebar"
+import { DocsSearch } from "@/components/app/docs-search"
 import { PromptKitLogo } from "@/components/app/icon/prompt-kit-logo"
 import { useBreakpoint } from "@/hooks/use-breakpoint"
 import { kit } from "@/lib/site"
@@ -11,23 +14,29 @@ export type HeaderProps = {
 export function Header({ triggerViewportWidth }: HeaderProps) {
   const isMobileView = useBreakpoint(triggerViewportWidth)
 
-  if (!isMobileView) {
-    return null
-  }
-
   return (
-    <nav className="border-border/80 bg-background/85 fixed inset-x-3 top-3 z-60 rounded-xl border px-3 py-2 shadow-lg shadow-black/20 backdrop-blur-xl md:hidden">
-      <div className="text-foreground mx-auto flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2">
-          <span className="bg-primary text-primary-foreground flex size-8 items-center justify-center rounded-lg">
-            <PromptKitLogo className="size-4" />
-          </span>
-          <span className="text-sm font-semibold tracking-[-0.02em] lowercase">
-            {kit.name}
-          </span>
-        </Link>
-        <SidebarTrigger className="border-border bg-secondary/60 text-muted-foreground hover:bg-accent hover:text-foreground size-8 rounded-lg border" />
+    <header className="border-border bg-background sticky top-0 z-30 flex h-14 items-center gap-3 border-b px-4 sm:px-6">
+      {isMobileView ? (
+        <>
+          <SidebarTrigger className="text-muted-foreground hover:bg-accent hover:text-foreground size-11 shrink-0 rounded-md" />
+          <Link
+            href="/"
+            prefetch={false}
+            aria-label={`${kit.name} home`}
+            className="focus-visible:ring-ring flex min-w-0 items-center gap-2 rounded-sm outline-none focus-visible:ring-2"
+          >
+            <PromptKitLogo aria-hidden="true" className="size-5 shrink-0" />
+            <span className="truncate text-sm font-semibold tracking-tight">
+              {kit.name}
+            </span>
+          </Link>
+        </>
+      ) : (
+        <span className="text-muted-foreground text-sm">Documentation</span>
+      )}
+      <div className="ml-auto shrink-0">
+        <DocsSearch />
       </div>
-    </nav>
+    </header>
   )
 }

@@ -1,13 +1,13 @@
 import type { Metadata } from "next"
-import { Geist_Mono, Inter } from "next/font/google"
+import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { getRegistryOrigin, kit } from "@/lib/site"
 import Script from "next/script"
 import { LayoutClient } from "./layout.client"
 
-const inter = Inter({
-  variable: "--font-inter",
+const geist = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
 })
 
@@ -36,7 +36,7 @@ export default function RootLayout({
         <Script defer src="https://assets.onedollarstats.com/stonks.js" />
       ) : null}
       <body
-        className={`${inter.className} ${geistMono.variable} font-sans antialiased`}
+        className={`${geist.variable} ${geistMono.variable} font-sans antialiased`}
       >
         <ThemeProvider
           attribute="class"

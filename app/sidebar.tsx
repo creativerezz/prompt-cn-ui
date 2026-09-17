@@ -162,8 +162,8 @@ function NavSection({
   currentPath: string
 }) {
   return (
-    <SidebarGroup className="px-2 py-1.5">
-      <SidebarGroupLabel className="text-sidebar-foreground/45 px-2 text-xs font-medium">
+    <SidebarGroup className="px-3 py-1">
+      <SidebarGroupLabel className="text-muted-foreground px-2 text-xs font-medium">
         {label}
       </SidebarGroupLabel>
       <SidebarGroupContent>
@@ -178,35 +178,33 @@ function NavSection({
                   asChild
                   isActive={isActive}
                   tooltip={item.title}
-                  className="text-sidebar-foreground/65 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground relative h-9 rounded-lg transition-colors duration-150 data-[active=true]:font-medium"
+                  className="text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground data-[active=true]:bg-sidebar-accent data-[active=true]:text-sidebar-accent-foreground h-8 rounded-md transition-colors data-[active=true]:font-medium"
                 >
                   <Link
                     href={item.url}
+                    prefetch={false}
                     target={item.external ? "_blank" : undefined}
                     rel={item.external ? "noopener noreferrer" : undefined}
                     aria-current={isActive ? "page" : undefined}
                   >
-                    <span
+                    <Icon
                       aria-hidden="true"
                       className={cn(
-                        "bg-sidebar-primary absolute inset-y-2 left-0 w-0.5 rounded-full opacity-0 shadow-[0_0_10px_var(--sidebar-primary)] transition-opacity",
-                        isActive && "opacity-100"
-                      )}
-                    />
-                    <Icon
-                      className={cn(
-                        "text-sidebar-foreground/55 size-4 shrink-0 transition-colors",
-                        isActive && "text-sidebar-primary"
+                        "size-4 shrink-0",
+                        isActive && "text-sidebar-accent-foreground"
                       )}
                     />
                     <span>{item.title}</span>
                     {item.isNew ? (
-                      <span className="border-sidebar-primary/25 bg-sidebar-primary/10 text-sidebar-primary ml-auto rounded-full border px-1.5 py-0.5 font-mono text-xs leading-none group-data-[collapsible=icon]:hidden">
+                      <span className="border-sidebar-border text-muted-foreground ml-auto rounded border px-1 text-[10px] leading-4 group-data-[collapsible=icon]:hidden">
                         New
                       </span>
                     ) : null}
                     {item.external ? (
-                      <ExternalLink className="text-sidebar-foreground/35 ml-auto size-3 group-data-[collapsible=icon]:hidden" />
+                      <ExternalLink
+                        aria-hidden="true"
+                        className="text-muted-foreground ml-auto size-3 group-data-[collapsible=icon]:hidden"
+                      />
                     ) : null}
                   </Link>
                 </SidebarMenuButton>
@@ -243,11 +241,11 @@ function ThemeCycleButton() {
         disabled
         tooltip="Theme"
         aria-label="Theme"
-        className="text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-9 rounded-lg"
+        className="text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-8 rounded-md"
       >
         <Monitor className="size-4" />
         <span>Theme</span>
-        <span className="text-sidebar-foreground/35 ml-auto font-mono text-xs group-data-[collapsible=icon]:hidden">
+        <span className="text-muted-foreground ml-auto text-xs group-data-[collapsible=icon]:hidden">
           Cycle
         </span>
       </SidebarMenuButton>
@@ -260,11 +258,11 @@ function ThemeCycleButton() {
       onClick={() => setTheme(next)}
       tooltip={label}
       aria-label={`${label}. Switch to ${next} theme`}
-      className="text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-9 rounded-lg"
+      className="text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground h-8 rounded-md"
     >
       <Icon className="size-4" />
       <span>{label}</span>
-      <span className="text-sidebar-foreground/35 ml-auto font-mono text-xs group-data-[collapsible=icon]:hidden">
+      <span className="text-muted-foreground ml-auto text-xs group-data-[collapsible=icon]:hidden">
         Cycle
       </span>
     </SidebarMenuButton>
@@ -273,7 +271,7 @@ function ThemeCycleButton() {
 
 export function AppSidebar() {
   const currentPath = usePathname()
-  const { isMobileView, setOpenMobile } = useSidebar()
+  const { setOpenMobile } = useSidebar()
 
   useEffect(() => {
     setOpenMobile(false)
@@ -281,31 +279,32 @@ export function AppSidebar() {
 
   return (
     <Sidebar
-      variant="floating"
+      variant="sidebar"
       collapsible="icon"
-      className="border-none shadow-none"
+      className="border-sidebar-border"
     >
-      {!isMobileView ? (
-        <SidebarHeader className="border-sidebar-border/70 border-b p-3">
-          <div className="flex items-center gap-2 group-data-[collapsible=icon]:flex-col">
-            <Link
-              href="/"
-              className="flex min-w-0 flex-1 items-center gap-2.5 group-data-[collapsible=icon]:flex-none"
-            >
-              <span className="bg-sidebar-primary text-sidebar-primary-foreground flex size-8 shrink-0 items-center justify-center rounded-lg shadow-[0_0_24px_color-mix(in_oklab,var(--sidebar-primary)_28%,transparent)]">
-                <PromptKitLogo className="size-4.5" />
-              </span>
-              <span className="truncate text-sm font-semibold tracking-[-0.02em] group-data-[collapsible=icon]:hidden">
-                {kit.name}
-              </span>
-            </Link>
-            <SidebarTrigger className="border-sidebar-border bg-sidebar-accent/40 text-sidebar-foreground/60 hover:bg-sidebar-accent hover:text-sidebar-accent-foreground size-8 shrink-0 rounded-lg border" />
-          </div>
-        </SidebarHeader>
-      ) : null}
+      <SidebarHeader className="border-sidebar-border h-14 justify-center border-b px-3 py-2">
+        <div className="flex items-center gap-2 group-data-[collapsible=icon]:justify-center">
+          <Link
+            href="/"
+            prefetch={false}
+            className="focus-visible:ring-ring flex min-w-0 flex-1 items-center gap-2 rounded-sm outline-none group-data-[collapsible=icon]:hidden focus-visible:ring-2"
+          >
+            <span className="text-sidebar-foreground flex size-7 shrink-0 items-center justify-center">
+              <PromptKitLogo aria-hidden="true" className="size-5" />
+            </span>
+            <span className="truncate text-sm font-semibold tracking-[-0.02em] group-data-[collapsible=icon]:hidden">
+              {kit.name}
+            </span>
+          </Link>
+          <SidebarTrigger className="text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground size-8 shrink-0 rounded-md" />
+        </div>
+      </SidebarHeader>
 
       <SidebarContent
-        className="[scrollbar-width:thin] [scrollbar-color:var(--sidebar-border)_transparent] py-2"
+        role="navigation"
+        aria-label="Documentation"
+        className="[scrollbar-width:thin] [scrollbar-color:var(--sidebar-border)_transparent] gap-3 py-3"
         style={{ scrollbarWidth: "thin" }}
       >
         <NavSection
@@ -340,7 +339,7 @@ export function AppSidebar() {
         />
       </SidebarContent>
 
-      <SidebarFooter className="border-sidebar-border/70 border-t p-2">
+      <SidebarFooter className="border-sidebar-border border-t p-3">
         <SidebarMenu>
           <SidebarMenuItem>
             <ThemeCycleButton />
